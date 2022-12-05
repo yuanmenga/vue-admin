@@ -1,7 +1,8 @@
 import Axios from "./Axios";
 const http = new Axios({
   baseURL: "/api",
-  timeout: 5000,
+  timeout: 10000,
   headers: {},
 });
+
 export { http };

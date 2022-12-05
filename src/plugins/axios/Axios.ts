@@ -1,49 +1,59 @@
+import router from "@/router";
 import axios, { AxiosRequestConfig } from "axios";
 
 export default class Axios {
   private instance;
   constructor(config: AxiosRequestConfig) {
     this.instance = axios.create(config);
+
+    this.interceptors();
   }
-  public async request<T, D = ResponseResult<T>>(
-    config: AxiosRequestConfig
-  ): Promise<D> {
+
+  public async request<T, D = ResponseResult<T>>(config: AxiosRequestConfig) {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await this.instance.request<D>(config);
-        return response;
+        resolve(response.data);
       } catch (error) {
         reject(error);
       }
-    });
+    }) as Promise<D>;
   }
-  //拦截器
+
   private interceptors() {
     this.interceptorsRequest();
     this.interceptorsResponse();
   }
-  //请求拦截器
+
   private interceptorsRequest() {
     this.instance.interceptors.request.use(
-      function (config) {
-        // 在发送请求之前做些什么
+      (config) => {
+        // config.headers = {
+        //   Authorization: "Bearer " + store.get(CacheEnum.TOKEN_NAME),
+        // };
         return config;
       },
-      function (error) {
-        // 对请求错误做些什么
+      (error) => {
         return Promise.reject(error);
       }
     );
   }
-  //响应拦截器
   private interceptorsResponse() {
     this.instance.interceptors.response.use(
-      function (response) {
-        // 对响应数据做点什么
+      (response) => {
         return response;
       },
-      function (error) {
-        // 对响应错误做点什么
+      (error) => {
+        // switch (error.response.status) {
+        //   case 401:
+        //     store.remove(CacheEnum.TOKEN_NAME);
+        //     router.push({ name: "login" });
+        //     break;
+        //   case 422:
+        //     //后台表单验证错误
+        //     errorStore().errors = {};
+        //     break;
+        // }
         return Promise.reject(error);
       }
     );

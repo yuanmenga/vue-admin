@@ -1,9 +1,33 @@
-import { http } from "../plugins/axios";
-interface User {
+import { http } from "@/plugins/axios";
+
+export interface User {
   name: string;
   age: number;
-  avater: string;
+  avatar: string;
+  permissions: string[];
 }
-export async function info() {
-  return http.request<User>({ url: "info" });
+
+function info() {
+  return http.request<User>({
+    url: `user/info`,
+  });
 }
+
+interface LoginInterface {
+  token: string;
+}
+
+export interface ILoginData {
+  account: string;
+  password: string;
+}
+
+export function login(data: ILoginData) {
+  return http.request<LoginInterface>({
+    url: `login`,
+    method: "post",
+    data,
+  });
+}
+
+export default { info, login };

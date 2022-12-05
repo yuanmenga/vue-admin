@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from "vue-router";
-import { env } from "@/helper";
+import util from "@/utils";
 // import 自动引入
 const layouts = import.meta.globEager("../layouts/*.vue"); //获取所有布局
 const views = import.meta.globEager("../views/**/*.vue"); //获取所有子路由
@@ -39,9 +39,10 @@ function getRouterModule(file: string, module: any) {
   } as RouteRecordRaw;
   return Object.assign(route);
 }
-const routes = env.VITE_ROUTER_AUTOLOAD
+
+const routes = util.env.VITE_ROUTER_AUTOLOAD
   ? getAllRouter()
   : ([] as RouteRecordRaw[]);
 
-console.log(env.VITE_ROUTER_AUTOLOAD);
+console.log(util.env.VITE_ROUTER_AUTOLOAD);
 export default routes;

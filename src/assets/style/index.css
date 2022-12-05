@@ -1,3 +1,4 @@
+@import url(small.css) screen and (max-width: 375px);
 * {
   padding: 0;
   margin: 0;
@@ -5,4 +6,3 @@
 a {
   text-decoration: none;
 }
-@import url(small.css) screen and (max-width: 375px);
