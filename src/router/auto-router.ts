@@ -1,9 +1,9 @@
 import { RouteRecordRaw } from "vue-router";
 import util from "@/utils";
 // import 自动引入
-const layouts = import.meta.globEager("../layouts/*.vue"); //获取所有布局
-const views = import.meta.globEager("../views/**/*.vue"); //获取所有子路由
-//获取全部路由
+const layouts = import.meta.globEager("../layouts/*.vue"); //获取所有布局布局
+const views = import.meta.globEager("../views/**/*.vue"); //获取所有布局子路由
+//获取布局路由
 function getAllRouter() {
   const layoutRouters = [] as RouteRecordRaw[];
   Object.entries(layouts).forEach(([file, module]) => {
@@ -13,7 +13,7 @@ function getAllRouter() {
   });
   return layoutRouters;
 }
-//获取子路由
+// 获取布局子路由
 function getChildRouter(layoutRouters: RouteRecordRaw) {
   const routers: RouteRecordRaw[] = [];
   Object.entries(views).forEach(([file, module]) => {
@@ -28,7 +28,7 @@ function getChildRouter(layoutRouters: RouteRecordRaw) {
   });
   return routers;
 }
-//生成路由方法
+// 拆分字符串，生成布局路由和子路由
 function getRouterModule(file: string, module: any) {
   const name = file.split("/").pop()?.split(".")[0];
   const component = module.default;

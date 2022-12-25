@@ -10,7 +10,7 @@ export default ({ command, mode }: ConfigEnv) => {
   console.log(mode); //development 开发阶段
   const isBuild = command == "build";
 
-  //获取到配置项
+  //获取到配置项,获取的都是字符串解构，需要进行解析
   const root = process.cwd();
   const env = parseEnv(loadEnv(mode, root));
   // 路由别名定义

@@ -1,3 +1,4 @@
+//转换env环境变量类型工具
 import _ from "lodash";
 export default (env: Record<string, any>): ViteEnv => {
   //使用深拷贝进行类型转换
