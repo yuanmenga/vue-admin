@@ -143,3 +143,15 @@ export default {
 </script>
 ```
 
+## vite配置
+
+- .env文件
+
+- 插件配置
+
+在进行插件安装时最好看官网，插件的版本不一样会有一些代码的写法不同。
+
+mockjs（https://github.com/vbenjs/vite-plugin-mock/blob/main/README.zh_CN.md）
+
+tailwindcss（https://tailwindcss.com/docs/guides/vite#vue）
+
