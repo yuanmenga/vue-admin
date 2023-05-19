@@ -16,7 +16,6 @@ export default ({ command, mode }: ConfigEnv) => {
   const isBuild = command === "build";
   //获取.env文件的配置项,并将env文件的配置项转换成相应的数据类型（正常都解析为字符串）
   const env = parseEnv(loadEnv(mode, "."));
-  console.log(parseEnv(env));
   return {
     // plugins: [vue()],
     plugins: setupPlugins(isBuild, env),
