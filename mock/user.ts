@@ -15,13 +15,16 @@
 import { MockMethod } from "vite-plugin-mock";
 export default [
   {
-    url: "/api/get",
+    url: "/api/info",
     method: "get",
     response: ({ query }) => {
       return {
-        code: 0,
+        code: 200,
+        message: "请求成功",
+        type: "success",
         data: {
           name: "nihao",
+          age: 18,
         },
       };
     },

@@ -5,6 +5,9 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import userApi from "@/api/userApi";
+const a = await userApi.info();
+</script>
 
 <style scoped></style>

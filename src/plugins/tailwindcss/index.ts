@@ -1,2 +1,2 @@
-import "./tailwindcss.css";
+import "./tailwind.css";
 export function setupTailwindcss() {}
