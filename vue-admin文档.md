@@ -148,6 +148,8 @@ export default {
 - .env文件
 - 插件配置（plugins）
 - 类型声明文件（types）
+- 封装axios
+- 引入taiwindcss（注意：使用taiwindcss需要安装vscode的taiwindcss插件）
 
 在进行插件安装时最好看官网，插件的版本不一样会有一些代码的写法不同。
 
