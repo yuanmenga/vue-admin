@@ -6,9 +6,9 @@
       <div class="p-5 mt-5">
         <h1 class="text-center text-gray-600 text-[25px]">会员登录</h1>
         <div class="mt-7">
-          <input type="text" placeholder="请输入用户名" class="hd-input" />
-          <input type="text" placeholder="请输入密码" class="hd-input mt-4" />
-          <button class="hd-button mt-8">登录</button>
+          <HdInput placeholder="请输入用户名" v-model="accout.name" />
+          <HdInput placeholder="请输入密码" class="mt-5" />
+          <HdButton class="mt-8" content="登录" />
           <div
             class="text-[14px] text-gray-950 flex justify-evenly mt-6 md:px-6"
           >
@@ -30,8 +30,14 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
-<script>
+<script setup lang="ts">
+import { reactive } from "vue";
+const accout = reactive({
+  name: "你阿迪",
+  age: 16,
+});
+</script>
+<script lang="ts">
 export default {
   route: {
     path: "/login",
@@ -39,12 +45,6 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.hd-input {
-  @apply w-full border border-gray-300 rounded-sm outline-none py-2 px-3 placeholder:text-sm focus:ring-2 ring-offset-1 ring-violet-500 duration-300 focus:border-white;
-}
-.hd-button {
-  @apply w-full bg-violet-700 rounded-md py-2 text-lg text-white hover:bg-violet-500 duration-300;
-}
 a:hover {
   color: rgb(26, 127, 243);
 }

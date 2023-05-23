@@ -1,5 +1,5 @@
 interface ViteEnv {
-  VITE_SOME_KEY: number;
-  VITE_SOME_URL: boolean;
+  VITE_AUTO_ROUTE: boolean;
+  VITE_SOME_URL: string;
 }
 interface ImportMetaEnv extends ViteEnv {}
