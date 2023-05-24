@@ -7,10 +7,19 @@
         <h1 class="text-center text-gray-600 text-[25px]">会员登录</h1>
         <div class="mt-7">
           <HdInput placeholder="请输入用户名" v-model="accout.name" />
-          <HdInput placeholder="请输入密码" class="mt-5" />
-          <HdButton class="mt-8" content="登录" />
+          <HdInput
+            placeholder="请输入密码"
+            v-model="accout.password"
+            class="mt-5"
+          />
+          <HdButton class="mt-8" content="登录" @click="onSubmit(accout)" />
+          <div class="w-full flex justify-center items-center mt-4">
+            <i
+              class="fa-brands fa-weixin bg-green-400 text-white rounded-full p-1.5"
+            ></i>
+          </div>
           <div
-            class="text-[14px] text-gray-950 flex justify-evenly mt-6 md:px-6"
+            class="text-[14px] text-gray-950 flex justify-evenly md:px-6 mt-5"
           >
             <a href="">网站首页</a>
             <a href="">会员注册</a>
@@ -23,7 +32,7 @@
         <img
           src="@/assets/login.jpg"
           alt=""
-          class="w-full h-[370px] object-cover"
+          class="w-full h-[390px] object-cover"
         />
       </div>
     </div>
@@ -32,9 +41,22 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
+import userApi from "@/api/userApi";
+import util from "@/utils";
+const onSubmit = async (accout: any) => {
+  const {
+    data: { token },
+  } = await userApi.login(accout);
+  console.log(token, 112);
+
+  util.store.set("token", {
+    expire: 2000,
+    token,
+  });
+};
 const accout = reactive({
-  name: "你阿迪",
-  age: 16,
+  name: "阿迪",
+  password: 16,
 });
 </script>
 <script lang="ts">

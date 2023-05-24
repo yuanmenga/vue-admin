@@ -4,7 +4,7 @@
 //   component: {
 //   }
 //   children: [];
-import helper from "@/utils/helper";
+import util from "@/utils";
 import { RouteRecordRaw } from "vue-router";
 const layout = import.meta.globEager("../layout/*.vue");
 const view = import.meta.globEager("../view/**/*.vue");
@@ -52,5 +52,5 @@ function getRouteByModule(
   return Object.assign(route, module.default?.route);
 }
 //是否需要自动注册路由
-const autoRoutes = helper.env.VITE_AUTO_ROUTE ? getRoute() : [];
+const autoRoutes = util.env.VITE_AUTO_ROUTE ? getRoute() : [];
 export default autoRoutes;

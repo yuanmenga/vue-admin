@@ -150,6 +150,7 @@ export default {
 - 类型声明文件（types）
 - 封装axios
 - 引入taiwindcss（注意：使用taiwindcss需要安装vscode的taiwindcss插件）
+- vee-validate与yup（正常情况下我们会用组件库的表单验证，但是如果我们想自己写表单，还想有验证规则可以使用外部组件库，通过组件或者api的方式）
 
 在进行插件安装时最好看官网，插件的版本不一样会有一些代码的写法不同。
 
@@ -157,3 +158,4 @@ mockjs（https://github.com/vbenjs/vite-plugin-mock/blob/main/README.zh_CN.md）
 
 tailwindcss（https://tailwindcss.com/docs/guides/vite#vue）
 
+vee-validate与yup（https://doc.houdunren.com/%E6%8F%92%E4%BB%B6%E6%89%A9%E5%B1%95/%E5%89%8D%E7%AB%AF%E6%89%A9%E5%B1%95/7%20vee-validate%E4%B8%8Eyup.html#vee-validate）

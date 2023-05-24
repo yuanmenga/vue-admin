@@ -3,7 +3,9 @@
     type="text"
     class="hd-input"
     :value="modelValue"
-    @input="$emit('update:modelValue', ($event.target as any).value)"
+    @input="
+      $emit('update:modelValue', ($event.target as HTMLInputElement).value)
+    "
   />
 </template>
 

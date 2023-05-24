@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>admin...</div>
+    <div>主页</div>
     <router-view></router-view>
   </div>
 </template>

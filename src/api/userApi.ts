@@ -9,4 +9,14 @@ function info() {
     method: "get",
   });
 }
-export default { info };
+interface Login {
+  token: string;
+}
+function login(data: any) {
+  return http.request<Login>({
+    url: "/login",
+    method: "post",
+    data,
+  });
+}
+export default { info, login };
