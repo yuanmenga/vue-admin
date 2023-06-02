@@ -32,7 +32,7 @@
         <img
           src="@/assets/login.jpg"
           alt=""
-          class="w-full h-[390px] object-cover"
+          class="w-full h-[400px] object-cover"
         />
       </div>
     </div>
@@ -43,15 +43,19 @@
 import { reactive } from "vue";
 import userApi from "@/api/userApi";
 import util from "@/utils";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const onSubmit = async (accout: any) => {
   const {
     data: { token },
   } = await userApi.login(accout);
-  console.log(token, 112);
 
   util.store.set("token", {
-    expire: 2000,
+    expire: 100000,
     token,
+  });
+  router.push({
+    name: "admin",
   });
 };
 const accout = reactive({
@@ -61,6 +65,7 @@ const accout = reactive({
 </script>
 <script lang="ts">
 export default {
+  //路由源信息
   route: {
     path: "/login",
   },

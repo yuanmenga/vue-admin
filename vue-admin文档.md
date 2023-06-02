@@ -159,3 +159,8 @@ mockjs（https://github.com/vbenjs/vite-plugin-mock/blob/main/README.zh_CN.md）
 tailwindcss（https://tailwindcss.com/docs/guides/vite#vue）
 
 vee-validate与yup（https://doc.houdunren.com/%E6%8F%92%E4%BB%B6%E6%89%A9%E5%B1%95/%E5%89%8D%E7%AB%AF%E6%89%A9%E5%B1%95/7%20vee-validate%E4%B8%8Eyup.html#vee-validate）
+
+## 路由拦截
+
+将路由实例传递给路由守卫的方法，通过判断token和登录权限来决定路由是否可以跳转。
+

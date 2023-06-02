@@ -1,0 +1,6 @@
+.hd-button {
+  @apply w-full bg-violet-700 rounded-md py-2 text-lg text-white hover:bg-violet-500 duration-300;
+  &.hd-fuchsia {
+    @apply bg-fuchsia-500 hover:bg-fuchsia-300 duration-300;
+  }
+}

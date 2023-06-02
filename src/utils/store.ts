@@ -1,4 +1,4 @@
-interface IDate {
+export interface IDate {
   expire?: number;
   [key: string]: any;
 }
@@ -13,7 +13,8 @@ export default {
     const item = localStorage.getItem(key);
     if (item) {
       const data = JSON.parse(item);
-      if (data.expire < new Date().getTime()) {
+      const expire = data?.expire;
+      if (expire && expire < new Date().getTime()) {
         localStorage.removeItem(key);
         return null;
       }

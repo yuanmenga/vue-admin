@@ -8,6 +8,7 @@ import util from "@/utils";
 import { RouteRecordRaw } from "vue-router";
 const layout = import.meta.globEager("../layout/*.vue");
 const view = import.meta.globEager("../view/**/*.vue");
+
 //获取布局路由
 function getRoute() {
   const layoutRoutes = [] as RouteRecordRaw[];
@@ -16,8 +17,6 @@ function getRoute() {
     route.children = getChildrenRoute(route);
     layoutRoutes.push(route);
   });
-  console.log(layoutRoutes);
-
   return layoutRoutes;
 }
 //获取布局路由子路由
@@ -29,7 +28,7 @@ function getChildrenRoute(route: RouteRecordRaw): RouteRecordRaw[] {
       view.path = module.default?.route
         ? `${view.path}`
         : `${route.path}${view.path}`;
-      view.name = `${route.name as string}-${view.name as string}`;
+      view.name = `${route.name as string}.${view.name as string}`;
       routesView.push(view);
     }
   });
@@ -53,4 +52,6 @@ function getRouteByModule(
 }
 //是否需要自动注册路由
 const autoRoutes = util.env.VITE_AUTO_ROUTE ? getRoute() : [];
+console.log(autoRoutes, 12);
+
 export default autoRoutes;
