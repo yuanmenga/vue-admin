@@ -1,21 +1,17 @@
-//自动注册的格式
-// {
-//   path: "/";
-//   component: {
-//   }
-//   children: [];
+//根据layout和view文件夹获取.vue文件自动注册路由
 import util from "@/utils";
 import { RouteRecordRaw } from "vue-router";
-const layout = import.meta.globEager("../layout/*.vue");
-const view = import.meta.globEager("../view/**/*.vue");
+const layout = import.meta.globEager("../../layout/*.vue");
+const view = import.meta.globEager("../../view/**/*.vue");
 
 //获取布局路由
-function getRoute() {
+function getAutoRoute() {
   const layoutRoutes = [] as RouteRecordRaw[];
   Object.entries(layout).forEach(([file, module]) => {
     const route = getRouteByModule(file, module);
     route.children = getChildrenRoute(route);
     layoutRoutes.push(route);
+    // console.log(layoutRoutes);
   });
   return layoutRoutes;
 }
@@ -23,6 +19,8 @@ function getRoute() {
 function getChildrenRoute(route: RouteRecordRaw): RouteRecordRaw[] {
   const routesView = [] as RouteRecordRaw[];
   Object.entries(view).forEach(([file, module]) => {
+    // console.log(file, 123);
+
     if (file.includes(`../view/${route.name as string}`)) {
       const view = getRouteByModule(file, module);
       view.path = module.default?.route
@@ -51,7 +49,5 @@ function getRouteByModule(
   return Object.assign(route, module.default?.route);
 }
 //是否需要自动注册路由
-const autoRoutes = util.env.VITE_AUTO_ROUTE ? getRoute() : [];
-console.log(autoRoutes, 12);
 
-export default autoRoutes;
+export default getAutoRoute;

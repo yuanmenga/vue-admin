@@ -54,9 +54,9 @@ const onSubmit = async (accout: any) => {
     expire: 100000,
     token,
   });
-  router.push({
-    name: "admin",
-  });
+  //路由跳转
+  // router.push({ path: "/admin/home" });
+  router.push({ name: "admin.home" });
 };
 const accout = reactive({
   name: "阿迪",
