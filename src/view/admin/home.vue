@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="flex -translate-y-5 flex-col md:flex-row">
+    <div class="flex justify-between flex-col md:flex-row">
       <el-card
         shadow="always"
         :body-style="{ padding: '15px' }"
-        v-for="index of 4"
-        class="flex-1 m-5"
+        v-for="n of 4"
+        class="flex-1 mx-5 mt-3 md:mt-0"
       >
         <template #header>
           <div class="flex justify-between">
@@ -26,8 +26,36 @@
       </el-card>
     </div>
     <div class="echarts">
-      <div id="main" style="width: 600px; height: 500px"></div>
-      <div id="mains" style="width: 600px; height: 500px"></div>
+      <el-card
+        shadow="always"
+        :body-style="{ padding: '15px' }"
+        class="flex-1 md:mr-4"
+      >
+        <template #header>
+          <div>
+            <span class="text-[15px] text-gray-600">用户统计</span>
+          </div>
+        </template>
+        <div
+          id="main"
+          class="md:w-full md:h-[540px] w-[90vw] h-[290px] -mt-12 md:mt-0"
+        ></div>
+      </el-card>
+      <el-card
+        shadow="always"
+        :body-style="{ padding: '15px' }"
+        class="flex-1 md:mb-0 mt-5 md:mt-0"
+      >
+        <template #header>
+          <div>
+            <span class="text-[15px] text-gray-600">销售统计</span>
+          </div>
+        </template>
+        <div
+          id="mains"
+          class="md:w-full md:h-[540px] w-[90vw] h-[290px] -mt-10 md:mt-0"
+        ></div>
+      </el-card>
     </div>
   </div>
 </template>
@@ -64,14 +92,15 @@ nextTick(() => {
       trigger: "item",
     },
     legend: {
-      top: "5%",
+      top: "10%",
       left: "center",
     },
     series: [
       {
         name: "Access From",
         type: "pie",
-        radius: ["40%", "70%"],
+        top: "10%",
+        radius: ["40%", "60%"],
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 10,
@@ -117,6 +146,6 @@ nextTick(() => {
   }
 }
 .echarts {
-  @apply bg-white m-5 -translate-y-10 flex justify-evenly;
+  @apply h-[600px]  m-5 flex md:flex-row flex-col;
 }
 </style>

@@ -3,8 +3,11 @@
     <Menu />
 
     <div class="bg-slate-100 flex-1">
-      <Navbar />
-      <History />
+      <div>
+        <Navbar />
+        <History />
+      </div>
+
       <router-view></router-view>
     </div>
   </div>

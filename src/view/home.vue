@@ -29,7 +29,7 @@ export default {
 </script>
 <style scoped>
 .home {
-  @apply w-screen h-screen bg-[#313947] flex flex-col justify-center items-center;
+  @apply w-screen h-screen  flex flex-col justify-center items-center;
 }
 .imgBorderColor {
   border: 8px solid white;
