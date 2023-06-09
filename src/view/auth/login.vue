@@ -41,36 +41,34 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import userApi from "@/api/userApi";
+import userApi, { LoginIfrom } from "@/api/userApi";
 import util from "@/utils";
 import { useRouter } from "vue-router";
+import { cacheEnum } from "@/enum/cacheEnum";
 const router = useRouter();
-const onSubmit = async (accout: any) => {
+
+const onSubmit = async (accout: LoginIfrom) => {
   const {
     data: { token },
   } = await userApi.login(accout);
 
-  util.store.set("token", {
-    expire: 100000,
-    token,
-  });
-  //路由跳转
-  // router.push({ path: "/admin/home" });
-  router.push({ name: "admin.home" });
+  util.store.set(cacheEnum.TOKEN, { token }, 10000);
+  const routerName = util.store.get(cacheEnum.ROUTER) ?? "admin.home";
+  router.push({ name: routerName });
 };
 const accout = reactive({
-  name: "阿迪",
-  password: 16,
+  name: "admin",
+  password: "12",
 });
 </script>
-<script lang="ts">
+<!-- <script lang="ts">
 export default {
   //路由源信息
   route: {
     path: "/login",
   },
 };
-</script>
+</script> -->
 <style scoped lang="scss">
 a:hover {
   color: rgb(26, 127, 243);

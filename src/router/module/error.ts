@@ -1,26 +1,34 @@
 import { RouteRecordRaw } from "vue-router";
 export default {
   path: "/error",
-  component: () => import("@/layout/error.vue"),
-  meta: { auth: false, title: "错误页面", icon: "fas fa-robot", show: true },
+  name: "error",
+  component: () => import("@/layout/admin.vue"),
+  meta: {
+    auth: true,
+    menu: {
+      title: "错误页面",
+      icon: "fas fa-robot",
+      isClick: false,
+    },
+  },
   children: [
     {
       path: "403",
       name: "error.403",
       component: () => import("@/view/error/403.vue"),
-      meta: { title: "403", icon: "fas fa-robot", show: true },
+      meta: { menu: { title: "403", isClick: false } },
     },
     {
       path: "404",
       name: "error.404",
       component: () => import("@/view/error/404.vue"),
-      meta: { title: "404", icon: "fas fa-robot", show: true },
+      meta: { menu: { title: "404", isClick: false } },
     },
     {
       path: "500",
       name: "error.500",
       component: () => import("@/view/error/500.vue"),
-      meta: { title: "500", icon: "fas fa-robot", show: true },
+      meta: { menu: { title: "405", isClick: false } },
     },
   ],
 } as RouteRecordRaw;

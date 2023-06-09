@@ -1,19 +1,48 @@
+import { cacheEnum } from "@/enum/cacheEnum";
+import { userStore } from "@/store/useStore";
+
 import util from "@/utils";
 import { RouteLocationNormalized, Router } from "vue-router";
-
 //路由守卫
 class Guard {
   constructor(private router: Router) {}
   public run() {
-    this.router.beforeEach((to, form) => {
-      //to包括目标路由以及它包括的子路由
-      const token = util.store.get("token")?.token;
-      if (this.isLogin(to, token) === false) return { name: "auth.login" };
-    });
+    this.router.beforeEach(this.beforeEach.bind(this));
   }
-  //通过meta和token判断是否需要跳转登录页
-  private isLogin(to: RouteLocationNormalized, token: any): boolean {
-    return Boolean(!to.meta.auth || (to.meta.auth && token));
+  private async beforeEach(
+    to: RouteLocationNormalized,
+    form: RouteLocationNormalized
+  ) {
+    //to包括目标路由以及它包括的子路由
+    if (this.isLogin(to) === false) return { name: "login" };
+    // if (this.isGuest(to) === false) return form;
+    //每次跳转路由前请求用户信息
+    await this.getUserInfo();
+  }
+  //获取token
+  private token() {
+    return util.store.get(cacheEnum.TOKEN)?.token;
+  }
+
+  //登录用户访问
+  private isLogin(route: RouteLocationNormalized) {
+    const state = Boolean(
+      !route.meta.auth || (route.meta.auth && this.token())
+    );
+    if (state === false) {
+      util.store.set(cacheEnum.ROUTER, route.name);
+    }
+    return state;
+  }
+  //游客访问
+  // private isGuest(route: RouteLocationNormalized) {
+  //   return Boolean(!route.meta.guest || (route.meta.guest && !this.token()));
+  // }
+  //获取用户信息
+  private getUserInfo() {
+    if (this.token()) {
+      return userStore().getUserInfo();
+    }
   }
 }
 export default (router: Router) => {

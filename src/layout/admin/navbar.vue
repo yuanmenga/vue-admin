@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full bg-white p-5 flex items-center justify-between h-[60px]">
-    <el-breadcrumb separator="/" class="text-lg">
+  <div class="w-full bg-white px-7 flex items-center justify-between h-[60px]">
+    <el-breadcrumb separator="/" class="text-xl">
       <el-breadcrumb-item><a href="/">编辑器</a></el-breadcrumb-item>
       <el-breadcrumb-item>富文本编辑器</el-breadcrumb-item>
     </el-breadcrumb>
@@ -9,27 +9,40 @@
         src="@/assets/home-img.jpg"
         class="w-8 h-8 rounded-full object-cover mr-2"
       />
-      <span class="text-sm text-gray-600">vue-admin</span>
+      <span class="text-sm text-gray-600">{{ userstore.info?.name }}</span>
 
       <section>
         <div>
-          <i class="fab fa-cloudscale mr-2"></i>
-          <a>网站首页</a>
+          <i class="fab fa-folder-open mr-2"></i>
+          <a>文档资料</a>
         </div>
         <div>
           <i class="fas fa-ad mr-2"></i>
-          <a>关于我们</a>
+          <a>网站首页</a>
         </div>
         <div class="pb-0">
-          <i class="fab fa-cloudscale mr-2"></i>
-          <a>退出登录</a>
+          <i class="fas fa-sign-out-alt mr-2"></i>
+          <a @click="outLogin">退出登录</a>
         </div>
       </section>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { userStore } from "@/store/useStore";
+import util from "@/utils";
+import { useRouter } from "vue-router";
+import { cacheEnum } from "@/enum/cacheEnum";
+const router = useRouter();
+
+const userstore = userStore();
+const outLogin = () => {
+  util.store.remove(cacheEnum.TOKEN);
+  router.push({ name: "login" });
+  userstore.info = null;
+};
+</script>
 
 <style scoped lang="scss">
 .navbar {

@@ -1,15 +1,15 @@
-export interface IDate {
-  expire?: number;
-  [key: string]: any;
-}
+//token 管理工具
+
 export default {
-  set(key: string, data: IDate): void {
-    if (data.expire) {
-      data.expire = new Date().getTime() + data.expire * 1000;
+  set(key: string, data: any, expire?: number): void {
+    console.log(data, expire);
+
+    if (expire) {
+      data.expire = new Date().getTime() + expire * 1000;
     }
     localStorage.setItem(key, JSON.stringify(data));
   },
-  get(key: string): IDate | null {
+  get(key: string): any | null {
     const item = localStorage.getItem(key);
     if (item) {
       const data = JSON.parse(item);
@@ -21,5 +21,9 @@ export default {
       return data;
     }
     return null;
+  },
+  remove(key: string): void {
+    const item = localStorage.getItem(key);
+    if (item) localStorage.removeItem(key);
   },
 };

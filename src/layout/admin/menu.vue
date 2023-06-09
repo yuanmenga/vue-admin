@@ -1,5 +1,5 @@
 <template>
-  <div class="menu">
+  <div class="route">
     <div class="logo">
       <i class="fas fa-robot text-fuchsia-300 mr-4 text-[18px]"></i>
       <span>vue-admin</span>
@@ -13,18 +13,18 @@
           </section>
           <i
             class="fas fa-angle-down -mr-6 duration-300 text-sm"
-            :class="{ 'rotate-180': menu.active }"
+            :class="{ 'rotate-180': menu.isClick }"
           ></i>
         </dt>
         <div class="mt-4">
           <dd
-            v-if="menu.active"
+            v-if="menu.isClick"
             v-for="(cmenu, index) of menu.children"
             :key="index"
-            :class="{ active: cmenu.active }"
-            @click.stop="handleCmenu(cmenu)"
+            :class="{ active: cmenu?.isClick }"
+            @click.stop="chandle(menu, cmenu)"
           >
-            {{ cmenu.title }}
+            {{ cmenu?.title }}
           </dd>
         </div>
       </dl>
@@ -33,61 +33,44 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-//定义菜单的响应式数据
-interface MenuItem {
-  active?: boolean;
-  title: string;
-  icon?: string;
-}
-interface Menu extends MenuItem {
-  children: MenuItem[];
-}
+import { Menu, Imenu } from "#/menu";
+import { menuStore } from "@/store/menuStore";
+import router from "@/router";
+//获取pinia存储的路由数据
+const menus = menuStore().menus;
+console.log(menus);
 
-const menus = ref<Menu[]>([
-  {
-    title: "错误数据",
-    icon: "fa fa-exclamation-circle",
-    active: true,
-    children: [
-      { title: "404", active: true },
-      { title: "403" },
-      { title: "500" },
-    ],
-  },
-  {
-    title: "编辑器",
-    icon: "fab fa-algolia",
-    children: [{ title: "markdown编辑器" }, { title: "富文本编辑器" }],
-  },
-  {
-    title: "编辑器",
-    icon: "fab fa-app-store-ios",
-    children: [{ title: "markdown编辑器" }, { title: "富文本编辑器" }],
-  },
-]);
 //将所有的active设置为false
-const resetMenu = (Menu?: string) => {
-  menus.value.forEach((menu) => {
-    if (Menu === "menu") menu.active = false;
-    menu.children.forEach((cmenu) => {
-      cmenu.active = false;
+const resetmenu = () => {
+  menus.forEach((menu) => {
+    //将所有父路由点击状态变为false
+    menu.isClick = false;
+    menu.children?.forEach((cmenu) => {
+      //将所有子路由点击状态变为false
+      cmenu.isClick = false;
     });
   });
 };
+//菜单栏逻辑
+//如果一级菜单是打开的，点击让他关闭，如果是关闭状态，被点击时先让所有的一级菜单关闭，然后再打开它
+//二级菜单同理。
 const handle = (menu: Menu) => {
-  resetMenu("menu");
-  //把被点击menu的active设置成true
-  menu.active = true;
+  if (menu.isClick) menu.isClick = false;
+  else {
+    resetmenu();
+    menu.isClick = true;
+  }
 };
-const handleCmenu = (cmenu: MenuItem) => {
-  resetMenu();
-  cmenu.active = true;
+const chandle = (menu: Menu, cmenu?: Imenu) => {
+  resetmenu();
+  menu.isClick = true;
+  if (cmenu) cmenu.isClick = true;
+  router.push({ name: cmenu?.name });
 };
 </script>
 
 <style scoped lang="scss">
-.menu {
+.route {
   @apply w-[200px]  bg-gray-800  hidden md:block;
   .logo {
     @apply text-fuchsia-200 text-[19px] p-5;

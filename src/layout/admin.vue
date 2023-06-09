@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen flex">
+  <div class="w-screen min-h-screen flex">
     <Menu />
 
     <div class="bg-slate-100 flex-1">
@@ -8,7 +8,13 @@
         <History />
       </div>
 
-      <router-view></router-view>
+      <div class="p-5 pr-10">
+        <router-view #default="{ Component }">
+          <Transition enter-active-class="animate__animated animate__rollIn">
+            <component :is="Component"></component>
+          </Transition>
+        </router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -17,6 +23,13 @@
 import Menu from "./admin/menu.vue";
 import Navbar from "./admin/navbar.vue";
 import History from "./admin/history.vue";
+import { menuStore } from "@/store/menuStore";
+import { onBeforeRouteUpdate, useRoute } from "vue-router";
+const route = useRoute();
+onBeforeRouteUpdate(() => {
+  menuStore().addHistoryMenu(route);
+});
+menuStore().init();
 </script>
 <script lang="ts">
 export default {

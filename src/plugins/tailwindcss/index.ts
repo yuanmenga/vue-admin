@@ -1,2 +1,2 @@
 import "./tailwind.css";
-export function setupTailwindcss() {}
+export default function () {}

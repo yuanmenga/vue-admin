@@ -1,18 +1,23 @@
 import { http } from "../plugins/axios/index";
-interface User {
+export interface User {
   name: string;
+  avatar: string;
   age: number;
 }
 function info() {
   return http.request<User>({
-    url: "/info",
+    url: "/user/info",
     method: "get",
   });
 }
 interface Login {
   token: string;
 }
-function login(data: any) {
+export interface LoginIfrom {
+  name: string;
+  password: string;
+}
+function login(data: LoginIfrom) {
   return http.request<Login>({
     url: "/login",
     method: "post",

@@ -1,4 +1,5 @@
 import _ from "lodash";
+//env转换格式工具
 const env: ImportMetaEnv = _.cloneDeep(import.meta.env);
 Object.entries(env).forEach(([key, value]) => {
   if (value == "true" || value == "false")
