@@ -36,24 +36,20 @@
 import { Menu, Imenu } from "#/menu";
 import { menuStore } from "@/store/menuStore";
 import router from "@/router";
-//获取pinia存储的路由数据
 const menus = menuStore().menus;
 console.log(menus);
 
-//将所有的active设置为false
+//将所有路由的active设置为false
 const resetmenu = () => {
   menus.forEach((menu) => {
-    //将所有父路由点击状态变为false
     menu.isClick = false;
     menu.children?.forEach((cmenu) => {
-      //将所有子路由点击状态变为false
       cmenu.isClick = false;
     });
   });
 };
 //菜单栏逻辑
-//如果一级菜单是打开的，点击让他关闭，如果是关闭状态，被点击时先让所有的一级菜单关闭，然后再打开它
-//二级菜单同理。
+//如果菜单是打开的，点击让他关闭，如果是关闭状态，被点击时先让所有的菜单关闭，然后再打开它
 const handle = (menu: Menu) => {
   if (menu.isClick) menu.isClick = false;
   else {

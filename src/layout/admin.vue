@@ -26,10 +26,12 @@ import History from "./admin/history.vue";
 import { menuStore } from "@/store/menuStore";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
 const route = useRoute();
+
+menuStore().init();
+menuStore().addHistoryMenu(route);
 onBeforeRouteUpdate(() => {
   menuStore().addHistoryMenu(route);
 });
-menuStore().init();
 </script>
 <script lang="ts">
 export default {

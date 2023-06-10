@@ -2,8 +2,6 @@
 
 export default {
   set(key: string, data: any, expire?: number): void {
-    console.log(data, expire);
-
     if (expire) {
       data.expire = new Date().getTime() + expire * 1000;
     }

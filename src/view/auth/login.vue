@@ -53,7 +53,7 @@ const onSubmit = async (accout: LoginIfrom) => {
   } = await userApi.login(accout);
 
   util.store.set(cacheEnum.TOKEN, { token }, 10000);
-  const routerName = util.store.get(cacheEnum.ROUTER) ?? "admin.home";
+  const routerName = util.store.get(cacheEnum.HISTORY_ROUTER) ?? "admin.home";
   router.push({ name: routerName });
 };
 const accout = reactive({
@@ -61,14 +61,6 @@ const accout = reactive({
   password: "12",
 });
 </script>
-<!-- <script lang="ts">
-export default {
-  //路由源信息
-  route: {
-    path: "/login",
-  },
-};
-</script> -->
 <style scoped lang="scss">
 a:hover {
   color: rgb(26, 127, 243);

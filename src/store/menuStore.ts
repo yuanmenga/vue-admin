@@ -14,17 +14,25 @@ export const menuStore = defineStore("router", {
   actions: {
     init() {
       this.getMenuByRouter();
+      this.historyMenu = utils.store.get(cacheEnum.HISTORY_MENU) ?? [];
     },
+    //获取历史菜单
     addHistoryMenu(router: RouteLocationNormalized) {
       if (!router.meta.menu) return;
-      const menu: Menu = { ...router.meta.menu, name: router.name as string };
-      const isHas = this.historyMenu.some((menu) => menu.name === router.name);
-      if (!isHas) this.historyMenu.push(menu);
+      const menu: Imenu = { ...router.meta.menu, name: router.name as string };
+      const isHas = this.historyMenu.some((route) => menu.name === route.name);
+      if (!isHas) this.historyMenu.unshift(menu);
       if (this.historyMenu.length > 10) {
         this.historyMenu.pop();
       }
-      utils.store.set(cacheEnum.HISTORY, this.historyMenu);
+      utils.store.set(cacheEnum.HISTORY_MENU, this.historyMenu);
     },
+    removeHistoryMenu(menu: Imenu) {
+      const index = this.historyMenu.indexOf(menu);
+      this.historyMenu.splice(index, 1);
+      utils.store.set(cacheEnum.HISTORY_MENU, this.historyMenu);
+    },
+    //获取侧边栏菜单
     getMenuByRouter() {
       const routesAll = router.getRoutes(); //获取路由地址
       //对路由进行过滤处理
@@ -40,7 +48,7 @@ export const menuStore = defineStore("router", {
           return menu;
         });
       this.menus = routes;
-      console.log(this.menus);
+      console.log(this.menus, 12);
     },
   },
 });

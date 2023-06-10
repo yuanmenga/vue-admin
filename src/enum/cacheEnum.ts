@@ -1,5 +1,5 @@
 export enum cacheEnum {
   TOKEN = "token",
-  ROUTER = "historyRouter",
-  HISTORY = "historyMenu",
+  HISTORY_ROUTER = "historyRouter",
+  HISTORY_MENU = "historyMenu",
 }

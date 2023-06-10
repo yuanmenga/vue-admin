@@ -30,7 +30,7 @@ class Guard {
       !route.meta.auth || (route.meta.auth && this.token())
     );
     if (state === false) {
-      util.store.set(cacheEnum.ROUTER, route.name);
+      util.store.set(cacheEnum.HISTORY_ROUTER, route.name);
     }
     return state;
   }
