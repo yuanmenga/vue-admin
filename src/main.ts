@@ -1,13 +1,14 @@
 import { createApp } from "vue";
-import "./style/global.scss";
 import App from "./App.vue";
-import { setupRouter } from "./router";
+import "@/style/global.scss";
+import router, { setupRouter } from "./router";
 import { setupPlugins } from "./plugins";
 
-function createInstance() {
+async function bootstrap() {
   const app = createApp(App);
   setupRouter(app); //注册路由
   setupPlugins(app); //注册插件
+  await router.isReady(); //路由全部加载完毕再挂载组件
   app.mount("#app");
 }
-createInstance(); //创建Vue实例
+bootstrap(); //创建Vue实例

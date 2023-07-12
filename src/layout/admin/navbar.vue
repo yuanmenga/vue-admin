@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="w-full bg-white px-7 flex items-center justify-between h-[60px]">
     <el-breadcrumb separator="/" class="text-xl">
       <el-breadcrumb-item><a href="/">编辑器</a></el-breadcrumb-item>
@@ -57,4 +57,4 @@ const outLogin = () => {
     display: block;
   }
 }
-</style>
+</style> -->

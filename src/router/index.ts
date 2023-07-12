@@ -1,18 +1,16 @@
 import { App } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
-import autoRoutes from "./autoload";
 import routes from "./routes";
+import moduleRoutes from "./module";
 import guard from "./guard";
-
+console.log(...moduleRoutes);
 const router = createRouter({
-  history: createWebHistory(), //路由有两种模式：hash模式和普通模式
-  //路由由自动注册和定制路由组成
-
-  routes: [...routes, ...autoRoutes],
+  history: createWebHistory(),
+  routes: [...routes, ...moduleRoutes],
 });
-//具名导出
+
 export function setupRouter(app: App) {
   guard(router);
-  app.use(router); //注册路由
+  app.use(router);
 }
-export default router; //默认导出
+export default router;

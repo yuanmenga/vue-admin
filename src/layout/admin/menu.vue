@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="route">
     <div class="logo">
       <i class="fas fa-robot text-fuchsia-300 mr-4 text-[18px]"></i>
@@ -35,9 +35,9 @@
 <script setup lang="ts">
 import { Menu, Imenu } from "#/menu";
 import { menuStore } from "@/store/menuStore";
+// import menuSl from "@/composition/menu";
 import router from "@/router";
 const menus = menuStore().menus;
-console.log(menus);
 
 //将所有路由的active设置为false
 const resetmenu = () => {
@@ -93,4 +93,4 @@ const chandle = (menu: Menu, cmenu?: Imenu) => {
     }
   }
 }
-</style>
+</style> -->

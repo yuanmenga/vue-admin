@@ -10,13 +10,15 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
+    //自定义
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "#/*": ["./types/*"]
-    },
-    "types": ["element-plus/global", "echarts", "lodash"]
+    }
+    // "types": ["element-plus/global", "echarts", "lodash"]
   },
+  //告诉Ts需要识别的文件
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
@@ -28,4 +30,6 @@
     "types/**/*.d.ts",
     "types/**/*.ts"
   ]
+  // 对单独的文件进行配置
+  // "references": [{ "path": "./tsconfig.node.json" }]
 }

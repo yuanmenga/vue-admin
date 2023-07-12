@@ -187,3 +187,7 @@ vee-validate与yup（https://doc.houdunren.com/%E6%8F%92%E4%BB%B6%E6%89%A9%E5%B1
 3.路由切换动画
 
 4.历史菜单
+
+## composables
+
+某个数据被两个组件同时使用，可以把数据抽离出来

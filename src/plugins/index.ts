@@ -11,10 +11,11 @@ export function setupPlugins(app: App) {
 }
 //自动注册全局组件
 function autoRegisterComponent(app: App) {
-  const components = import.meta.globEager("../components/hd/*.vue");
+  const components = import.meta.globEager("../components/ym/*.vue");
   Object.entries(components).forEach(([key, value]) => {
+    //组件名字Hd+你的vue文件名字
     const componentName = `Hd${key.split("/").pop()?.split(".")[0]}`;
-    console.log(componentName);
+    // console.log(componentName);
     app.component(componentName, value.default);
   });
 }
