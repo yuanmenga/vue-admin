@@ -1,23 +1,15 @@
-<!-- <template>
-  <div class="w-screen min-h-screen flex">
+<template>
+  <div class="h-screen w-screen grid md:grid-cols-[auto_1fr]">
     <Menu />
-
-    <div class="bg-slate-100 flex-1">
+    <div class="bg-slate-100 grid grid-rows-[auto_1fr]">
       <div>
         <Navbar />
         <History />
       </div>
 
-      <div class="p-5 pr-10">
+      <div class="p-5 relative overflow-y-auto">
         <router-view #default="{ Component }">
-          <Transition
-            appear
-            class="animate__animated"
-            enter-active-class="animate__fadeInRight"
-            leave-active-class="animate__fadeOutLeft"
-          >
-            <component :is="Component"></component>
-          </Transition>
+          <component :is="Component"></component>
         </router-view>
       </div>
     </div>
@@ -25,34 +17,20 @@
 </template>
 
 <script setup lang="ts">
-import Menu from "./admin/menu.vue";
-import Navbar from "./admin/navbar.vue";
-import History from "./admin/history.vue";
-import { menuStore } from "@/store/menuStore";
+import Menu from "./menu.vue";
+import Navbar from "./navbar.vue";
+import History from "./history.vue";
+import menu from "@/composables/menu";
 import { useRoute } from "vue-router";
-
 import { watch } from "vue";
 const route = useRoute();
-
-menuStore().init();
-
-watch(route, () => {
-  menuStore().addHistoryMenu(route);
-});
-</script>
-<script lang="ts">
-export default {
-  route: {
-    meta: { auth: true },
+watch(
+  route,
+  () => {
+    menu.addHistoryMenu(route);
   },
-};
+  { immediate: true }
+);
 </script>
 
-<style scoped lang="scss"></style> -->
-<template>
-  <div>admin...<router-view></router-view></div>
-</template>
-
-<script setup lang="ts"></script>
-
-<style scoped></style>
+<style scoped lang="scss"></style>

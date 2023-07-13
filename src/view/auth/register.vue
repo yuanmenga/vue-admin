@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="bg-slate-300 h-screen flex justify-center items-center p-3">
     <div
       class="bg-white w-[850px] -translate-y-10 rounded-md shadow-sm overflow-hidden md:flex"
@@ -65,4 +65,4 @@ const accout = reactive({
 a:hover {
   color: rgb(26, 127, 243);
 }
-</style>
+</style> -->

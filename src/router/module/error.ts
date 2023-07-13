@@ -2,13 +2,14 @@ import { RouteRecordRaw } from "vue-router";
 export default {
   path: "/error",
   name: "error",
-  component: () => import("@/layout/admin.vue"),
+  redirect: "/error/403",
+  component: () => import("@/layout/admin/index.vue"),
   meta: {
     auth: true,
     menu: {
       title: "错误页面",
       icon: "fas fa-robot",
-      isClick: false,
+      isClick: true,
     },
   },
   children: [

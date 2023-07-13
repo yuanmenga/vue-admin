@@ -10,7 +10,7 @@ export default [
         message: "请示成功",
         status: "success",
         data: {
-          name: "向军大叔",
+          name: "yuanmeng",
           age: 18,
           avatar: "/images/xj.jpg",
           permissions: ["article_edit", "markdown_editor", "base_editor"],

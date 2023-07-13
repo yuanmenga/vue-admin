@@ -41,19 +41,22 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import userApi, { LoginIfrom } from "@/api/userApi";
+import { CacheEnum } from "@/enum/CacheEnum";
+import userApi, { ILoginData } from "@/api/userApi";
 import util from "@/utils";
 import { useRouter } from "vue-router";
-import { cacheEnum } from "@/enum/cacheEnum";
 const router = useRouter();
 
-const onSubmit = async (accout: LoginIfrom) => {
+const onSubmit = async (accout: ILoginData) => {
   const {
     data: { token },
   } = await userApi.login(accout);
+  console.log(token);
 
-  util.store.set(cacheEnum.TOKEN, { token }, 10000);
-  const routerName = util.store.get(cacheEnum.HISTORY_ROUTER) ?? "admin.home";
+  util.store.set(CacheEnum.TOKEN, { token }, 10000);
+  const routerName = util.store.get(CacheEnum.HISTORY_ROUTER) ?? "admin";
+  console.log(routerName);
+
   router.push({ name: routerName });
 };
 const accout = reactive({
@@ -66,3 +69,4 @@ a:hover {
   color: rgb(26, 127, 243);
 }
 </style>
+@/enum/CacheEnum

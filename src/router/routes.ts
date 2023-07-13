@@ -5,6 +5,9 @@ const routes = [
     path: "/",
     name: "login",
     component: () => import("@/view/auth/login.vue"),
+    meta: {
+      guest: true,
+    },
   },
   {
     path: "/register",

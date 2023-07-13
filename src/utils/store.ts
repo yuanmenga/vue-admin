@@ -1,19 +1,19 @@
-//token 管理工具
+//管理sessionStorage工具
 
 export default {
   set(key: string, data: any, expire?: number): void {
     if (expire) {
       data.expire = new Date().getTime() + expire * 1000;
     }
-    localStorage.setItem(key, JSON.stringify(data));
+    sessionStorage.setItem(key, JSON.stringify(data));
   },
   get(key: string): any | null {
-    const item = localStorage.getItem(key);
+    const item = sessionStorage.getItem(key);
     if (item) {
       const data = JSON.parse(item);
       const expire = data?.expire;
       if (expire && expire < new Date().getTime()) {
-        localStorage.removeItem(key);
+        sessionStorage.removeItem(key);
         return null;
       }
       return data;
@@ -21,7 +21,7 @@ export default {
     return null;
   },
   remove(key: string): void {
-    const item = localStorage.getItem(key);
-    if (item) localStorage.removeItem(key);
+    const item = sessionStorage.getItem(key);
+    if (item) sessionStorage.removeItem(key);
   },
 };

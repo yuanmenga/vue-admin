@@ -1,9 +1,19 @@
-<!-- <template>
+<template>
   <div class="w-full bg-white px-7 flex items-center justify-between h-[60px]">
-    <el-breadcrumb separator="/" class="text-xl">
-      <el-breadcrumb-item><a href="/">编辑器</a></el-breadcrumb-item>
-      <el-breadcrumb-item>富文本编辑器</el-breadcrumb-item>
-    </el-breadcrumb>
+    <div class="breadCrumbs">
+      <div>
+        <i
+          class="fas fa-caret-square-left mr-4 hover:cursor-pointer"
+          :class="{ 'rotate-180': menuService.close.value }"
+          @click.stop="menuService.toggleState"
+        ></i>
+      </div>
+      <el-breadcrumb separator="/" class="text-xl">
+        <el-breadcrumb-item><a href="/">编辑器</a></el-breadcrumb-item>
+        <el-breadcrumb-item>富文本编辑器</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+
     <div class="navbar">
       <img
         src="@/assets/home-img.jpg"
@@ -30,15 +40,16 @@
 </template>
 
 <script setup lang="ts">
-import { userStore } from "@/store/useStore";
+import userStore from "@/store/userStore";
+import menuService from "@/composables/menu";
 import util from "@/utils";
 import { useRouter } from "vue-router";
-import { cacheEnum } from "@/enum/cacheEnum";
+import { CacheEnum } from "@/enum/CacheEnum";
 const router = useRouter();
 
 const userstore = userStore();
 const outLogin = () => {
-  util.store.remove(cacheEnum.TOKEN);
+  util.store.remove(CacheEnum.TOKEN);
   router.push({ name: "login" });
   userstore.info = null;
 };
@@ -57,4 +68,7 @@ const outLogin = () => {
     display: block;
   }
 }
-</style> -->
+.breadCrumbs {
+  @apply flex justify-center items-center;
+}
+</style>
