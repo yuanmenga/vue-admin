@@ -5,8 +5,7 @@
         shadow="always"
         :body-style="{ padding: '15px' }"
         v-for="n of 4"
-        class="flex-1 ml-5 md:mx-5 mt-2 md:mt-0"
-      >
+        class="flex-1 ml-5 md:mx-5 mt-2 md:mt-0">
         <template #header>
           <div class="flex justify-between">
             <span class="text-[15px] text-gray-600">用户数</span>
@@ -26,114 +25,100 @@
       </el-card>
     </div>
     <div class="echarts">
-      <el-card
-        shadow="always"
-        :body-style="{ padding: '10px' }"
-        class="flex-1 md:mr-4 md:ml-0 ml-5"
-      >
+      <el-card shadow="always" :body-style="{ padding: '10px' }" class="flex-1 md:mr-4 md:ml-0 ml-5">
         <template #header>
           <div>
             <span class="text-[15px] text-gray-600">用户统计</span>
           </div>
         </template>
-        <div
-          id="main"
-          class="md:w-full md:h-[540px] w-[90vw] h-[290px] -mt-12 md:mt-0"
-        ></div>
+        <div id="main" class="md:w-full md:h-[540px] w-[90vw] h-[290px] -mt-12 md:mt-0"></div>
       </el-card>
-      <el-card
-        shadow="always"
-        :body-style="{ padding: '10px' }"
-        class="flex-1 mt-5 md:mt-0 md:ml-0 ml-5"
-      >
+      <el-card shadow="always" :body-style="{ padding: '10px' }" class="flex-1 mt-5 md:mt-0 md:ml-0 ml-5">
         <template #header>
           <div>
             <span class="text-[15px] text-gray-600">销售统计</span>
           </div>
         </template>
-        <div
-          id="mains"
-          class="md:w-full md:h-[540px] w-[90vw] h-[290px] -mt-10 md:mt-0"
-        ></div>
+        <div id="mains" class="md:w-full md:h-[540px] w-[90vw] h-[290px] -mt-10 md:mt-0"></div>
       </el-card>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import * as echarts from "echarts";
-import { nextTick } from "vue";
+import * as echarts from 'echarts'
+import { nextTick } from 'vue'
 
 nextTick(() => {
-  let myChart = echarts.init(document.getElementById("main") as HTMLElement);
-  let myCharts = echarts.init(document.getElementById("mains") as HTMLElement);
-  let option;
+  let myChart = echarts.init(document.getElementById('main') as HTMLElement)
+  let myCharts = echarts.init(document.getElementById('mains') as HTMLElement)
+  let option
   option = {
     xAxis: {
-      type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     },
     yAxis: {
-      type: "value",
+      type: 'value',
     },
     series: [
       {
         data: [120, 200, 150, 80, 70, 110, 130],
-        type: "bar",
+        type: 'bar',
         showBackground: true,
         backgroundStyle: {
-          color: "rgba(180, 180, 180, 0.2)",
+          color: 'rgba(180, 180, 180, 0.2)',
         },
       },
     ],
-  };
+  }
   let options = {
     tooltip: {
-      trigger: "item",
+      trigger: 'item',
     },
     legend: {
-      top: "10%",
-      left: "center",
+      top: '10%',
+      left: 'center',
     },
     series: [
       {
-        name: "Access From",
-        type: "pie",
-        top: "10%",
-        radius: ["40%", "60%"],
+        name: 'Access From',
+        type: 'pie',
+        top: '10%',
+        radius: ['40%', '60%'],
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 10,
-          borderColor: "#fff",
+          borderColor: '#fff',
           borderWidth: 2,
         },
         label: {
           show: false,
-          position: "center",
+          position: 'center',
         },
         emphasis: {
           label: {
             show: true,
             fontSize: 40,
-            fontWeight: "bold",
+            fontWeight: 'bold',
           },
         },
         labelLine: {
           show: false,
         },
         data: [
-          { value: 1048, name: "Search Engine" },
-          { value: 735, name: "Direct" },
-          { value: 580, name: "Email" },
-          { value: 484, name: "Union Ads" },
-          { value: 300, name: "Video Ads" },
+          { value: 1048, name: 'Search Engine' },
+          { value: 735, name: 'Direct' },
+          { value: 580, name: 'Email' },
+          { value: 484, name: 'Union Ads' },
+          { value: 300, name: 'Video Ads' },
         ],
       },
     ],
-  };
-  myChart.setOption(option);
-  myCharts.setOption(options);
-});
+  }
+  myChart.setOption(option)
+  myCharts.setOption(options)
+})
 </script>
 <script></script>
 <style scoped lang="scss">

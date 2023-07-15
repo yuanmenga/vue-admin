@@ -1,7 +1,7 @@
-import { viteMockServe } from "vite-plugin-mock";
+import { viteMockServe } from 'vite-plugin-mock'
 export default function setupMockPlugin(isBuild: boolean) {
   return viteMockServe({
-    mockPath: "mock",
+    mockPath: 'mock',
     localEnabled: !isBuild,
-  });
+  })
 }

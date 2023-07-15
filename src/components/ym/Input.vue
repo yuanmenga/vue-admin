@@ -3,15 +3,12 @@
     type="text"
     class="hd-input"
     :value="modelValue"
-    @input="
-      $emit('update:modelValue', ($event.target as HTMLInputElement).value)
-    "
-  />
+    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
 </template>
 
 <script setup lang="ts">
-defineProps(["modelValue"]);
-defineEmits(["update:modelValue"]);
+defineProps(['modelValue'])
+defineEmits(['update:modelValue'])
 </script>
 
 <style scoped lang="scss">

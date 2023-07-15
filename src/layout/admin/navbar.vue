@@ -5,67 +5,77 @@
         <i
           class="fas fa-caret-square-left mr-4 hover:cursor-pointer"
           :class="{ 'rotate-180': menuService.close.value }"
-          @click.stop="menuService.toggleState"
-        ></i>
+          @click.stop="menuService.toggleState"></i>
       </div>
-      <el-breadcrumb separator="/" class="text-xl">
-        <el-breadcrumb-item><a href="/">编辑器</a></el-breadcrumb-item>
-        <el-breadcrumb-item>富文本编辑器</el-breadcrumb-item>
-      </el-breadcrumb>
+      <HdBreadcrumb />
     </div>
 
     <div class="navbar">
-      <img
-        src="@/assets/home-img.jpg"
-        class="w-8 h-8 rounded-full object-cover mr-2"
-      />
-      <span class="text-sm text-gray-600">{{ userstore.info?.name }}</span>
+      <HdNotification class="mr-5 text-xl" />
+      <i class="fas fa-compress icson" @click="fullScreen" v-if="isFullScreen"></i>
+      <i class="fas fa-expand icson" @click="fullScreen" v-else></i>
+      <div class="personal">
+        <img src="@/assets/home-img.jpg" class="w-8 h-8 rounded-full object-cover mr-2" />
+        <span class="text-sm text-gray-600">{{ userstore.info?.name }}</span>
 
-      <section>
-        <div>
-          <i class="fab fa-folder-open mr-2"></i>
-          <a>文档资料</a>
-        </div>
-        <div>
-          <i class="fas fa-ad mr-2"></i>
-          <a>网站首页</a>
-        </div>
-        <div class="pb-0">
-          <i class="fas fa-sign-out-alt mr-2"></i>
-          <a @click="outLogin">退出登录</a>
-        </div>
-      </section>
+        <section>
+          <div>
+            <i class="fab fa-folder-open mr-2"></i>
+            <a>文档资料</a>
+          </div>
+          <div>
+            <i class="fas fa-ad mr-2"></i>
+            <a>网站首页</a>
+          </div>
+          <div class="pb-0">
+            <i class="fas fa-sign-out-alt mr-2"></i>
+            <a @click="outLogin">退出登录</a>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import userStore from "@/store/userStore";
-import menuService from "@/composables/menu";
-import util from "@/utils";
-import { useRouter } from "vue-router";
-import { CacheEnum } from "@/enum/CacheEnum";
-const router = useRouter();
-
-const userstore = userStore();
+import userStore from '@/store/userStore'
+import menuService from '@/composables/menu'
+import util from '@/utils'
+import { useRouter } from 'vue-router'
+import { CacheEnum } from '@/enum/CacheEnum'
+import { ref } from 'vue'
+const router = useRouter()
+const isFullScreen = ref(false)
+const userstore = userStore()
 const outLogin = () => {
-  util.store.remove(CacheEnum.TOKEN);
-  router.push({ name: "login" });
-  userstore.info = null;
-};
+  util.store.remove(CacheEnum.TOKEN)
+  router.push({ name: 'login' })
+  userstore.info = null
+}
+const fullScreen = () => {
+  isFullScreen.value ? document.exitFullscreen() : document.documentElement.requestFullscreen()
+  isFullScreen.value = !isFullScreen.value
+}
 </script>
 
 <style scoped lang="scss">
 .navbar {
-  @apply flex items-center relative cursor-pointer p-4 -mr-4;
-  section {
-    @apply hidden absolute top-14 right-4 text-gray-500 text-[16px] bg-white px-2 py-1 rounded-sm border-solid border-[1px] border-gray-400 z-10;
-    div {
-      @apply whitespace-nowrap pb-1 hover:cursor-pointer hover:text-[#9be6ff];
-    }
+  @apply flex justify-center items-center;
+  .icson {
+    @apply m-2 text-xl hidden md:block cursor-pointer;
   }
-  &:hover > section {
-    display: block;
+  .personal {
+    @apply flex items-center relative cursor-pointer p-4 -mr-4;
+
+    section {
+      @apply hidden absolute top-14 right-2 text-gray-500 text-[15px] bg-white px-3 py-1 rounded-sm border-solid border-[1px] border-gray-400 z-10;
+      div {
+        @apply whitespace-nowrap pb-1 hover:cursor-pointer hover:text-[#9be6ff];
+      }
+    }
+    &:hover > section {
+      @apply block;
+    }
   }
 }
 .breadCrumbs {

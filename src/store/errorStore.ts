@@ -1,10 +1,10 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 
-export default defineStore("error", {
+export default defineStore('error', {
   state: () => {
     return {
       errors: {},
-    };
+    }
   },
   actions: {},
-});
+})

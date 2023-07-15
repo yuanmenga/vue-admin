@@ -3,25 +3,25 @@
 export default {
   set(key: string, data: any, expire?: number): void {
     if (expire) {
-      data.expire = new Date().getTime() + expire * 1000;
+      data.expire = new Date().getTime() + expire * 1000
     }
-    sessionStorage.setItem(key, JSON.stringify(data));
+    sessionStorage.setItem(key, JSON.stringify(data))
   },
   get(key: string): any | null {
-    const item = sessionStorage.getItem(key);
+    const item = sessionStorage.getItem(key)
     if (item) {
-      const data = JSON.parse(item);
-      const expire = data?.expire;
+      const data = JSON.parse(item)
+      const expire = data?.expire
       if (expire && expire < new Date().getTime()) {
-        sessionStorage.removeItem(key);
-        return null;
+        sessionStorage.removeItem(key)
+        return null
       }
-      return data;
+      return data
     }
-    return null;
+    return null
   },
   remove(key: string): void {
-    const item = sessionStorage.getItem(key);
-    if (item) sessionStorage.removeItem(key);
+    const item = sessionStorage.getItem(key)
+    if (item) sessionStorage.removeItem(key)
   },
-};
+}

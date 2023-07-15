@@ -1,33 +1,33 @@
-import { RouteRecordRaw } from "vue-router";
+import { RouteRecordRaw } from 'vue-router'
 export default {
-  path: "/admin",
-  name: "admin",
+  path: '/admin',
+  name: 'admin',
   //路由重定向
-  redirect: "/admin/home",
-  component: () => import("@/layout/admin/index.vue"),
+  redirect: '/admin/home',
+  component: () => import('@/layout/admin/index.vue'),
   meta: {
     auth: true,
     menu: {
-      title: "控制台",
-      icon: "fas fa-robot",
+      title: '控制台',
+      icon: 'fas fa-robot',
       isClick: true,
-      name: "string",
+      name: 'string',
     },
   },
   children: [
     {
-      path: "home",
-      name: "admin.home",
-      component: () => import("@/view/admin/home.vue"),
+      path: 'home',
+      name: 'admin.home',
+      component: () => import('@/view/admin/home.vue'),
       meta: {
         auth: true,
         menu: {
-          title: "首页",
-          icon: "fas fa-robot",
+          title: '首页',
+          icon: 'fas fa-robot',
           isClick: true,
-          name: "string",
+          name: 'string',
         },
       },
     },
   ],
-} as RouteRecordRaw;
+} as RouteRecordRaw

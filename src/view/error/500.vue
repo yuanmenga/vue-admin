@@ -9,8 +9,7 @@
             <p class="text-2xl pb-8 px-12 font-medium"></p>
             <routerLink
               to="/"
-              class="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md mt-10"
-            >
+              class="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md mt-10">
               首页
             </routerLink>
           </div>
