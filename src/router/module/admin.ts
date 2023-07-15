@@ -11,7 +11,6 @@ export default {
       title: '控制台',
       icon: 'fas fa-robot',
       isClick: true,
-      name: 'string',
     },
   },
   children: [
@@ -21,11 +20,11 @@ export default {
       component: () => import('@/view/admin/home.vue'),
       meta: {
         auth: true,
+
         menu: {
           title: '首页',
           icon: 'fas fa-robot',
           isClick: true,
-          name: 'string',
         },
       },
     },

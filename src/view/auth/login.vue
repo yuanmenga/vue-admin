@@ -40,7 +40,7 @@ const onSubmit = async (accout: ILoginData) => {
   console.log(token)
 
   util.store.set(CacheEnum.TOKEN, { token }, 10000)
-  const routerName = util.store.get(CacheEnum.HISTORY_ROUTER) ?? 'admin'
+  const routerName = util.store.get(CacheEnum.HISTORY_ROUTER) ?? 'admin.home'
   console.log(routerName)
 
   router.push({ name: routerName })

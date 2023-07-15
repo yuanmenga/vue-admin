@@ -17,16 +17,16 @@ class Guard {
     }
     // if (to.meta.guest && this.token()) return form;
     //每次跳转路由前请求用户信息
-    await this.getUserInfo()
+    // await this.getUserInfo()
   }
   private token() {
     return util.store.get(CacheEnum.TOKEN)?.token
   }
-  private getUserInfo() {
-    if (this.token()) {
-      return userStore().getUserInfo()
-    }
-  }
+  // private getUserInfo() {
+  //   if (this.token()) {
+  //     return userStore().getUserInfo()
+  //   }
+  // }
 }
 export default (router: Router) => {
   new Guard(router).run()

@@ -1,9 +1,9 @@
-import { log } from 'console'
-import { RouteLocationNormalized } from 'vue-router'
+import { RouteLocationNormalized, RouteRecordRaw } from 'vue-router'
+import utils from '@/utils'
+import router from '@/router/index'
 import { IMenu, Menu } from '#/menu'
 import { CacheEnum } from '@/enum/CacheEnum'
-import router from '@/router'
-import utils from '@/utils'
+
 import { ref } from 'vue'
 
 class Menus {
@@ -13,7 +13,15 @@ class Menus {
   public route = ref(null as null | RouteLocationNormalized)
   constructor() {
     this.menu.value = this.getMenuByRouter()
-    this.historyMenu.value = utils.store.get(CacheEnum.HISTORY_MENU) ?? []
+    this.historyMenu.value = this.getHistoryMenu()
+  }
+  private getHistoryMenu() {
+    const routes = [] as RouteRecordRaw[]
+    router.getRoutes().map((r) => routes.push(...r.children))
+    let menus: IMenu[] = utils.store.get(CacheEnum.HISTORY_MENU) ?? []
+    return menus.filter((m) => {
+      return routes.some((r) => r.name == m.name)
+    })
   }
   //根据路由获取菜单
   getMenuByRouter(): Menu[] {

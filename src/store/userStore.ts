@@ -13,7 +13,7 @@ export default defineStore('userStore', {
     async getUserInfo() {
       if (store.get(CacheEnum.TOKEN)) {
         const res = await userApi.info()
-        this.info = res.data
+        this.info = res.data as User
       }
     },
   },
