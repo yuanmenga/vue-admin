@@ -66,3 +66,10 @@ a:hover {
   color: rgb(26, 127, 243);
 }
 </style> -->
+<template>
+  <div>123</div>
+</template>
+
+<script setup lang="ts"></script>
+
+<style scoped></style>

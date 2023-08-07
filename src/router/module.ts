@@ -1,29 +1,40 @@
-import userApi, { User } from '@/api/userApi'
-import { CacheEnum } from '@/enum/CacheEnum'
-import utils from '@/utils'
-import { RouteRecordRaw, Router } from 'vue-router'
+// import userApi, { User } from "@/api/userApi";
+import { CacheEnum } from "@/enum/CacheEnum";
+import utils from "@/utils";
+import { RouteRecordRaw } from "vue-router";
 function getModuleRoute() {
-  const moduleFile = import.meta.globEager('./module/**/*.ts')
-  const routes: RouteRecordRaw[] = []
+  const moduleFile = import.meta.glob("./module/**/*.ts", { eager: true });
+  const routes: RouteRecordRaw[] = [];
   Object.keys(moduleFile).forEach((key) => {
-    routes.push(moduleFile[key].default)
-  })
-  return routes
+    console.log(moduleFile[key]);
+
+    routes.push((moduleFile[key] as any).default);
+  });
+  console.log(routes);
+  return routes;
 }
-let routes: RouteRecordRaw[] = getModuleRoute()
-async function autoload() {
-  let user: User
+
+function getinfo() {
   if (utils.store.get(CacheEnum.TOKEN)) {
-    const res = await userApi.info()
-    user = res.data as User
+    return {
+      permissions: ["qw", "error"],
+    };
   }
+  return {
+    permissions: ["qw", "error"],
+  };
+}
+let routes: RouteRecordRaw[] = getModuleRoute();
+function autoload() {
+  let user = getinfo();
+  console.log(user, 1);
   routes = routes.map((route) => {
     route.children = route.children?.filter((r) => {
-      const permission = r.meta?.permission
-      return permission ? user.permissions?.includes(permission) : true
-    })
-    return route
-  })
-  return routes
+      const permission = r.meta?.permission;
+      return permission ? user.permissions?.includes(permission) : true;
+    });
+    return route;
+  });
+  return routes;
 }
-export default autoload
+export default autoload;

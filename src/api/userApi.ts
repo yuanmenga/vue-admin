@@ -18,13 +18,13 @@ interface LoginInterface {
 }
 
 export interface ILoginData {
-  name: string;
+  account: string;
   password: string;
 }
 
 export function login(data: ILoginData) {
   return http.request<LoginInterface>({
-    url: `login`,
+    url: `/login`,
     method: "post",
     data,
   });

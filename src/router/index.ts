@@ -1,18 +1,18 @@
-import userStore from '@/store/userStore'
-import { App } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
-import routes from './routes'
-import autoload from './module'
-import guard from './guard'
+// import userStore from "@/store/userStore";
+import { App } from "vue";
+import { createRouter, createWebHashHistory } from "vue-router";
+import routes from "./routes";
+import autoload from "./module";
+import guard from "./guard";
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes: [...routes, ...(await autoload())],
-})
+  history: createWebHashHistory(),
+  routes: [...routes, ...autoload()],
+});
 
 export async function setupRouter(app: App) {
-  await userStore().getUserInfo()
-  guard(router)
-  app.use(router)
+  // await userStore().getUserInfo();
+  guard(router);
+  app.use(router);
 }
-export default router
+export default router;

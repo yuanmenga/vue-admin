@@ -1,6 +1,6 @@
 interface ResponseRedult<T> {
   code: number
   message: string
-  type: 'success' | 'error'
+  status: 'success' | 'error'
   data: T
 }

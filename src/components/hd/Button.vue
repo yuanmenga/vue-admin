@@ -1,5 +1,5 @@
 <template>
-  <button class="hd-button">{{ props.content }}</button>
+  <button class="hd-button">{{ props?.content }}</button>
 </template>
 
 <script setup lang="ts">

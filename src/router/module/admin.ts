@@ -9,7 +9,7 @@ export default {
     auth: true,
     menu: {
       title: '控制台',
-      icon: 'fas fa-robot',
+      icon: 'DashboardOne',
       isClick: true,
     },
   },
@@ -20,10 +20,9 @@ export default {
       component: () => import('@/view/admin/home.vue'),
       meta: {
         auth: true,
-
         menu: {
           title: '首页',
-          icon: 'fas fa-robot',
+          icon: 'AllApplication',
           isClick: true,
         },
       },

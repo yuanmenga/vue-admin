@@ -2,7 +2,7 @@ import { IconType } from '@icon-park/vue-next/es/all'
 
 export interface IMenu {
   title?: string
-  icon?: string
+  icon?: IconType
   isClick?: boolean
   name?: string
 }

@@ -1,24 +1,35 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES2020",
     "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    //自定义
-    "baseUrl": ".",
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": ".", //此文件所在目录的根目录作为基准路径
+    //路径别名映射
     "paths": {
       "@/*": ["./src/*"],
       "#/*": ["./types/*"]
     }
-    // "types": ["element-plus/global", "echarts", "lodash"]
+    // "types": ["element-plus/global", "echarts", "lodash"] //类型检查的类型声明文件
   },
   //告诉Ts需要识别的文件
+  //写了TypeScript语法的所有文件
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
@@ -26,9 +37,9 @@
     "src/**/*.vue",
     "vite.config.ts",
     "vite/**/*.ts",
-    "mock/**/*.ts",
     "types/**/*.d.ts",
-    "types/**/*.ts"
+    "types/**/*.ts",
+    "mock/**/*.ts"
   ]
   // 对单独的文件进行配置
   // "references": [{ "path": "./tsconfig.node.json" }]

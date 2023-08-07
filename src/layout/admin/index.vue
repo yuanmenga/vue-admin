@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-screen grid md:grid-cols-[auto_1fr]">
+  <div class="h-screen w-[100%] grid md:grid-cols-[auto_1fr]">
     <Menu />
     <div class="bg-slate-100 grid grid-rows-[auto_1fr]">
       <div>
@@ -17,20 +17,20 @@
 </template>
 
 <script setup lang="ts">
-import Menu from './menu.vue'
-import Navbar from './navbar.vue'
-import History from './history.vue'
-import menu from '@/composables/menu'
-import { useRoute } from 'vue-router'
-import { watch } from 'vue'
-const route = useRoute()
+import Menu from "./menu.vue";
+import Navbar from "./navbar.vue";
+import History from "./history.vue";
+import menu from "@/composables/menu";
+import { useRoute } from "vue-router";
+import { watch } from "vue";
+const route = useRoute();
 watch(
   route,
   () => {
-    menu.addHistoryMenu(route)
+    menu.addHistoryMenu(route);
   },
-  { immediate: true },
-)
+  { immediate: true }
+);
 </script>
 
 <style scoped lang="scss"></style>
